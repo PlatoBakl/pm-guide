@@ -13,7 +13,7 @@ class ProcessAreasSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('areas')->truncate();
+//        DB::table('areas')->truncate();
 
         DB::table('areas')->insert([
             'title' => "Управление интеграцией проекта",

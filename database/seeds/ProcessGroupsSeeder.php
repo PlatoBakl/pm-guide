@@ -13,7 +13,7 @@ class ProcessGroupsSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('groups')->truncate();
+//        DB::table('groups')->truncate();
 
         DB::table('groups')->insert([
             'title' => "Инициация",
