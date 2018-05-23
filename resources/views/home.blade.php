@@ -6,9 +6,9 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">Раздел 1</div>
-                <div class="card-body">
-                    <div >
-                        @todo: add logo
+                <div class="card-body text-center">
+                    <div>
+                        <i class="fas fa-book m-4" style="font-size: 48px;color: #899db3"></i>
                     </div>
                     <div>Обобщенный свод знаний</div>
                     <a href="{{ url('guide/info') }}">Перейти</a>
@@ -18,9 +18,9 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">Раздел 2</div>
-                <div class="card-body">
+                <div class="card-body text-center">
                     <div >
-                        @todo: add logo
+                        <i class="fas fa-clipboard-list m-4" style="font-size: 48px;color: #899db3"></i>
                     </div>
                     <div>Выбор методологии УП</div>
                     <a href="{{ url('choice') }}">Перейти</a>
@@ -30,9 +30,9 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">Раздел 3</div>
-                <div class="card-body">
+                <div class="card-body text-center">
                     <div >
-                        @todo: add logo
+                        <i class="fas fa-calendar-check m-4" style="font-size: 48px;color: #899db3"></i>
                     </div>
                     <div>Синтез руководства для УП</div>
                     <a href="{{ url('synthesis') }}">Перейти</a>

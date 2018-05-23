@@ -24,6 +24,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/stepper.css') }}" rel="stylesheet">
+    <link href="{{ asset('web-fonts-with-css/css/fontawesome-all.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">

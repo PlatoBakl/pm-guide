@@ -23,9 +23,10 @@ class ProjectController extends Controller
 
     public function show()
     {
-        $user = Auth::user()->load('projects', 'projects.comparison');
+        $user = Auth::user()->load('projects', 'projects.comparison', 'projects.comparison.methodology');
+        $methodologies = Methodology::all();
 
-        return view('projects', ['user' => $user]);
+        return view('projects', ['user' => $user, 'methodologies' => $methodologies]);
     }
 
     /**
