@@ -1,69 +1,69 @@
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope, $http) {
     var team = [
-        {name:'ПМ', min: 180,current: 180,max: 180, id: 0},
-        {name:'Программист 1', min: 105,current: 120,max: 130, id: 1},
-        {name:'Программист 2', min: 105,current: 120,max: 130, id: 2},
-        {name:'Тестировщик', min: 60,current: 70,max: 80, id: 3}
+        // {name:'ПМ', min: 180,current: 180,max: 180, id: 0},
+        // {name:'Программист 1', min: 105,current: 120,max: 130, id: 1},
+        // {name:'Программист 2', min: 105,current: 120,max: 130, id: 2},
+        // {name:'Тестировщик', min: 60,current: 70,max: 80, id: 3}
     ];
 
     var processes = [
-        {name: 'Process 1', team: [
-            {name: "Пм", min: 4, current: 5, max: 5, id: 0},
-            {name: "Программист 1", min: 4, current: 4, max: 5, id: 1},
-            {name: "Программист 2", min: 4, current: 4, max: 5, id: 2},
-            {name: "Тестировщик", min: 4, current: 4, max: 5, id: 3}
-        ]},
-        {name: 'Process 2', team: [
-            {name: "Пм", min: 8, current: 11, max: 12, id: 0},
-            {name: "Программист 1", min: 8, current: 11, max: 12, id: 1},
-            {name: "Программист 2", min: 8, current: 11, max: 12, id: 2},
-            {name: "Тестировщик", min: 8, current: 11, max: 12, id: 3}
-        ]}
+        // {name: 'Process 1', team: [
+        //     {name: "Пм", min: 4, current: 5, max: 5, id: 0},
+        //     {name: "Программист 1", min: 4, current: 4, max: 5, id: 1},
+        //     {name: "Программист 2", min: 4, current: 4, max: 5, id: 2},
+        //     {name: "Тестировщик", min: 4, current: 4, max: 5, id: 3}
+        // ]},
+        // {name: 'Process 2', team: [
+        //     {name: "Пм", min: 8, current: 11, max: 12, id: 0},
+        //     {name: "Программист 1", min: 8, current: 11, max: 12, id: 1},
+        //     {name: "Программист 2", min: 8, current: 11, max: 12, id: 2},
+        //     {name: "Тестировщик", min: 8, current: 11, max: 12, id: 3}
+        // ]}
     ];
 
 
     var risks = [
-        {
-            name: 'Risk 1',
-            type: [
-                {
-                    name: 'probability_occurrence',
-                    value:[
-                        {
-                            min: 0.3, current: 0.4, max: 0.4
-                        }]
-
-                } ,
-                {
-                    name: 'consequences_manifestation',
-                    value:[
-                        {
-                            min: 5, current: 5, max: 6
-                        }]
-
-                }
-            ]
-        },
-        {
-        name: 'Risk 2',
-            type: [
-                {
-                    name: 'probability_occurrence',
-                    value:[
-                        {
-                            min: 0.2, current: 0.3, max: 0.4
-                        }]
-                } ,
-                {
-                    name: 'consequences_manifestation', value:
-                    [{
-                        min: 3, current: 3, max: 4
-                    }]
-
-                }
-            ]
-        },
+        // {
+        //     name: 'Risk 1',
+        //     type: [
+        //         {
+        //             name: 'probability_occurrence',
+        //             value:[
+        //                 {
+        //                     min: 0.3, current: 0.4, max: 0.4
+        //                 }]
+        //
+        //         } ,
+        //         {
+        //             name: 'consequences_manifestation',
+        //             value:[
+        //                 {
+        //                     min: 5, current: 5, max: 6
+        //                 }]
+        //
+        //         }
+        //     ]
+        // },
+        // {
+        // name: 'Risk 2',
+        //     type: [
+        //         {
+        //             name: 'probability_occurrence',
+        //             value:[
+        //                 {
+        //                     min: 0.2, current: 0.3, max: 0.4
+        //                 }]
+        //         } ,
+        //         {
+        //             name: 'consequences_manifestation', value:
+        //             [{
+        //                 min: 3, current: 3, max: 4
+        //             }]
+        //
+        //         }
+        //     ]
+        // },
     ];
 
     var project_id;
