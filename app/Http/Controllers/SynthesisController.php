@@ -151,7 +151,7 @@ class SynthesisController extends Controller
     public function calculateCombination(Project $project){
         $processes = $project->combinations()->where('total_process_max','<', $project->cost_limit )->get();
 
-        $result = $result_sub = $pMin =[];
+        $result = $result_sub = $pMin = $max = [];
 
         foreach ($processes as $process){
 

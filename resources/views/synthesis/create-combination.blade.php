@@ -30,7 +30,7 @@
                                 <label for="title" class="col-sm-2 col-form-label text-md-right">Методологии</label>
 
                                 <div class="col-md-10">
-                                    <select name="method" ng-change="updateMethodologies()" class="form-control{{ $errors->has('method') ? ' is-invalid' : '' }}">
+                                    <select name="method" class="form-control{{ $errors->has('method') ? ' is-invalid' : '' }}">
                                         @foreach($methodologies as $methodology)
                                             <option value="{{$methodology->id}}" @if($mark_comparisons && $mark_comparisons->methodology_id == $methodology->id) selected @endif >{{$methodology->name}}</option>
                                         @endforeach
