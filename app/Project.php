@@ -52,4 +52,17 @@ class Project extends Model
     {
         return $this->hasOne('App\Comparison');
     }
+
+    /**
+     * Get methodologies comparison
+     */
+    public function comparisons()
+    {
+        return $this->hasMany('App\Comparison');
+    }
+
+    public function combinations()
+    {
+        return $this->hasMany(Combination::class);
+    }
 }

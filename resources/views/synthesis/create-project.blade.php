@@ -15,7 +15,7 @@
             <div class="tab-content" id="nav-tabContent"  style="margin-top: 30px">
                 <div class="tab-pane fade show active" id="nav-create" role="tabpanel" aria-labelledby="nav-create-tab">
                     <div class="container">
-                        <form method="POST" action="{{ url('synthesis/create-project') }}">
+                        <form method="POST" action="{{ route('project.store') }}">
                             @csrf
 
                             <div class="form-group row">
@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="button" id="save" class="btn btn-primary">Save</button>
+                                    <button type="submit" id="save" class="btn btn-primary">Save</button>
                                 </div>
                             </div>
                         </form>
@@ -74,7 +74,7 @@
                 @if (count($user->projects) !== 0)
                 <div class="tab-pane fade" id="nav-choose" role="tabpanel" aria-labelledby="nav-choose-tab">
                     <div class="container">
-                        <form method="POST" action="{{ url('synthesis/create-project') }}">
+                        <form method="POST" action="{{ route('project.store') }}">
                             @csrf
 
                             <div class="form-group row">
@@ -97,7 +97,7 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="button" class="btn btn-primary" id="choose">Save</button>
+                                    <button type="submit" class="btn btn-primary" id="choose">Save</button>
                                 </div>
                             </div>
                         </form>

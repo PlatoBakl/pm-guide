@@ -6,3 +6,11 @@ ul.questionnaire {
 div.principles {
     margin-top: 15px;
 }
+
+.stepper .steps{
+    display: none;
+}
+
+.stepper > .actions > ul > li:first-child{
+    display: none;
+}

@@ -36,8 +36,7 @@
                     <label for="objective" class="col-sm-4 col-form-label text-md-right">Project objective</label>
 
                     <div class="col-md-6">
-                        <textarea id="objective" type="text" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}" name="objective" value="{{ old('objective') }}" required autofocus>
-                        </textarea>
+                        <textarea id="objective" type="text" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}" name="objective" value="{{ old('objective') }}" required autofocus></textarea>
                         @if ($errors->has('objective'))
                             <span class="invalid-feedback">
                                 <strong>{{ $errors->first('objective') }}</strong>

@@ -68,8 +68,15 @@ Route::middleware(['auth'])->group(function () {
         });
 
         Route::get('/create-project', 'SynthesisController@index');
-        Route::post('/create-project', 'SynthesisController@store');
+        Route::post('/create-project', 'SynthesisController@store')->name('project.store');
 
+        Route::get('/process-of-project/{project}', 'SynthesisController@processOfProject')->name('combination.list');
+        Route::get('/create-combination/{project}', 'SynthesisController@createCombination')->name('combination.create');
+        Route::get('/calculate/{project}', 'SynthesisController@calculateCombination')->name('combination.calculate');
+
+        Route::post('/add-combination', 'SynthesisController@addCombination');
+
+        Route::post('/get-process', 'SynthesisController@getProcess')->name('combination.get-process');
     });
 
 });
