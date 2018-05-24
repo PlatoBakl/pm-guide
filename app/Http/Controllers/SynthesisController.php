@@ -75,7 +75,7 @@ class SynthesisController extends Controller
 
         $methodologies = Methodology::all();
 
-        $mark_comparisons = $project->comparisons->sortByDesc('euclid')->first();
+        $mark_comparisons = $project->comparisons->sortBy('euclid')->first();
 
         return view('synthesis.create-combination ', compact('project','combinations', 'methodologies', 'mark_comparisons'));
 

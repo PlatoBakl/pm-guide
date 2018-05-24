@@ -28,7 +28,7 @@
                                 {{ ($project->comparison)  ? 'yes' : 'no' }}
                             </td>
                             <td class="col-3 text-center">
-                                {{ ($project->comparisons->sortByDesc('euclid') && $project->comparisons->sortByDesc('euclid')->first()['methodology_id'])  ? $methodologies->find($project->comparisons->sortByDesc('euclid')->first()['methodology_id'])->name : "-" }}
+                                {{ ($project->comparisons->sortByDesc('euclid') && $project->comparisons->sortByDesc('euclid')->first()['methodology_id'])  ? $methodologies->find($project->comparisons->sortBy('euclid')->first()['methodology_id'])->name : "-" }}
                             </td>
                         </tr>
                     @endforeach
