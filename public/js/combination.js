@@ -22,7 +22,6 @@ app.controller('myCtrl', function($scope, $http) {
         // ]}
     ];
 
-
     var risks = [
         // {
         //     name: 'Risk 1',
@@ -66,8 +65,6 @@ app.controller('myCtrl', function($scope, $http) {
         // },
     ];
 
-    var project_id;
-
     $scope.currentProcess = '';
 
 
@@ -77,6 +74,25 @@ app.controller('myCtrl', function($scope, $http) {
 
     $scope.addMethodologyId = function(methodology_id) {
         // console.log($scope.processes);
+        var req = {
+            method: 'GET',
+            url: '../../synthesis/get-all-method'
+        }
+
+        $http(req).then(function(response) {
+                if(response.data.methods){
+                    $scope.methods = response.data.methods;
+                    $scope.methods.push({id : 0, name : "Не выбранно"});
+                    if(methodology_id == undefined){
+                        methodology_id = $scope.methods.length;
+                    }
+                    $scope.method_selected = $scope.methods[methodology_id - 1];
+                }
+            },
+            function(response) { // optional
+                // failed
+            });
+
         if(methodology_id){
             var req = {
                 method: 'POST',
@@ -210,6 +226,31 @@ app.controller('myCtrl', function($scope, $http) {
 
 
     };
+
+    $scope.updateMethod = function() {
+        var methodology_id = $scope.method_selected.id;
+        if(methodology_id){
+            var req = {
+                method: 'POST',
+                url: '../../synthesis/get-process',
+                data: {
+                    methodology_id: methodology_id,
+                }
+            }
+            $scope.processes = [];
+            $http(req).then(
+                function(response) {
+                    if(response.data.process){
+
+                        $scope.processes = angular.copy(response.data.process);
+                    }
+                },
+                function(response) { // optional
+                    // failed
+                });
+        }
+    };
+
 
     $scope.reset();
 });

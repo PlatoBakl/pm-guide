@@ -191,7 +191,7 @@ class SynthesisController extends Controller
 
         $combination = Combination::find($key);
 
-        return $combination->name;
+        return $combination->id;
 //        dd($result_sub,$result,$max);
     }
 
@@ -206,5 +206,11 @@ class SynthesisController extends Controller
         });
 
         return response()->json(['process' => $process]);
+    }
+
+    public function getAllMethod(){
+        $methods = Methodology::all();
+
+        return response()->json(['methods' => $methods]);
     }
 }

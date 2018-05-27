@@ -26,17 +26,19 @@
                         </section>
                         <h3>Методологии</h3>
                         <section>
-                            <div class="form-group row" ng-init="addMethodologyId({{$mark_comparisons->methodology_id}})">
+                            <div class="form-group row" ng-init="addMethodologyId({{$mark_comparisons->methodology_id ?? null}})">
                                 <label for="title" class="col-sm-2 col-form-label text-md-right">Методологии</label>
 
                                 <div class="col-md-10">
-                                    <select name="method" class="form-control{{ $errors->has('method') ? ' is-invalid' : '' }}">
-                                        @foreach($methodologies as $methodology)
-                                            <option value="{{$methodology->id}}" @if($mark_comparisons && $mark_comparisons->methodology_id == $methodology->id) selected @endif >{{$methodology->name}}</option>
-                                        @endforeach
-                                        <option value="empty">Не выбрано</option>
+                                    @{{ $scope.methods }}
+                                    <select
+                                            ng-options="method as method.name for method in methods"
+                                            ng-model="method_selected"
+                                            ng-change="updateMethod()"
+                                            class="form-control"
+                                            name="method"
+                                    >
                                     </select>
-
                                     @if ($errors->has('method'))
                                         <span class="invalid-feedback">
                                         <strong>{{ $errors->first('method') }}</strong>

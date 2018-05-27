@@ -19,4 +19,8 @@ class Process extends Model
     protected $fillable = [
         'name', 'source_id'
     ];
+
+    protected $dates = [
+        'created_at','updated_at'
+    ];
 }
