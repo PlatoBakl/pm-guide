@@ -8,6 +8,7 @@ use App\Methodology;
 use App\Process;
 use App\Project;
 use App\Question;
+use App\Source;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -208,9 +209,9 @@ class SynthesisController extends Controller
         return response()->json(['process' => $process]);
     }
 
-    public function getAllMethod(){
-        $methods = Methodology::all();
+    public function getAllSources(){
+        $sources = Source::all();
 
-        return response()->json(['methods' => $methods]);
+        return response()->json(['sources' => $sources]);
     }
 }

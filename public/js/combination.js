@@ -76,46 +76,51 @@ app.controller('myCtrl', function($scope, $http) {
         // console.log($scope.processes);
         var req = {
             method: 'GET',
-            url: '../../synthesis/get-all-method'
+            url: '../../synthesis/get-all-sources'
         }
-
         $http(req).then(function(response) {
-                if(response.data.methods){
-                    $scope.methods = response.data.methods;
-                    $scope.methods.push({id : 0, name : "Не выбранно"});
+                if(response.data.sources){
+                    $scope.methods = response.data.sources;
+                    $scope.methods.push({id : 0, title : "Не выбранно"});
                     if(methodology_id == undefined){
                         methodology_id = $scope.methods.length;
                     }
-                    $scope.method_selected = $scope.methods[methodology_id - 1];
+
+                    let selected = $scope.methods.filter(methodology => methodology.methodology_id == methodology_id);
+
+                    // console.log($scope.methods.filter(methodology => methodology.methodology_id == methodology_id));
+                    $scope.method_selected = (selected.length)? selected[0] : $scope.methods[$scope.methods.length - 1];
+
+                    if(selected.length){
+                        var req = {
+                            method: 'POST',
+                            url: '../../synthesis/get-process',
+                            data: {
+                                methodology_id: selected[0].id,
+                            }
+                        }
+                        console.log(selected);
+                        $http(req).then(
+                            function(response) {
+
+                                if(response.data.process){
+                                    $scope.processes = angular.copy(response.data.process);
+                                }
+
+                                // console.log($scope.processes);
+
+                            },
+                            function(response) { // optional
+                                // failed
+                            });
+                    }
                 }
             },
             function(response) { // optional
                 // failed
             });
 
-        if(methodology_id){
-            var req = {
-                method: 'POST',
-                url: '../../synthesis/get-process',
-                data: {
-                    methodology_id: methodology_id,
-                }
-            }
 
-            $http(req).then(
-                function(response) {
-
-                    if(response.data.process){
-                        $scope.processes = angular.copy(response.data.process);
-                    }
-
-                    // console.log($scope.processes);
-
-                },
-                function(response) { // optional
-                    // failed
-                });
-        }
     };
 
 

@@ -26,5 +26,7 @@ class DatabaseSeeder extends Seeder
          $this->call(ProcessSourcesSeeder::class);
          $this->call(ProcessAreasSeeder::class);
          $this->call(ProcessKnowledgeSeeder::class);
+         
+         $this->call(AddMethodologyIdToSourcesSeeder::class);
     }
 }

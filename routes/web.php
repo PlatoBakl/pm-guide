@@ -73,7 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/process-of-project/{project}', 'SynthesisController@processOfProject')->name('combination.list');
         Route::get('/create-combination/{project}', 'SynthesisController@createCombination')->name('combination.create');
         Route::get('/calculate/{project}', 'SynthesisController@calculateCombination')->name('combination.calculate');
-        Route::get('/get-all-method', 'SynthesisController@getAllMethod')->name('combination.get-all-method');
+        Route::get('/get-all-sources', 'SynthesisController@getAllSources')->name('combination.get-all-sources');
 
         Route::post('/add-combination', 'SynthesisController@addCombination');
 

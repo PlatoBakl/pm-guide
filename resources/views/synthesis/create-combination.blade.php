@@ -30,9 +30,8 @@
                                 <label for="title" class="col-sm-2 col-form-label text-md-right">Методологии</label>
 
                                 <div class="col-md-10">
-                                    @{{ $scope.methods }}
                                     <select
-                                            ng-options="method as method.name for method in methods"
+                                            ng-options="method as method.title for method in methods"
                                             ng-model="method_selected"
                                             ng-change="updateMethod()"
                                             class="form-control"
