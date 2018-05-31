@@ -201,8 +201,9 @@ class SynthesisController extends Controller
      */
     public function getProcess(Request $request){
 
-        $process = Process::where('source_id',$request->methodology_id)->get(['name'])->map(function ($post) {
+        $process = Process::where('source_id',$request->methodology_id)->get(['name', 'source_id'])->map(function ($post) {
             $post['team'] = [];
+            $post['selected'] = 1;
             return $post;
         });
 
@@ -210,7 +211,14 @@ class SynthesisController extends Controller
     }
 
     public function getAllSources(){
-        $sources = Source::all();
+        $sources = Source::all()->load('processes');
+
+        foreach ($sources as $sid => $source) {
+            foreach ($source->processes as $pid => $process) {
+                $sources[$sid]->processes[$pid]['team'] = [];
+                $sources[$sid]->processes[$pid]['selected'] = 0;
+            }
+        }
 
         return response()->json(['sources' => $sources]);
     }

@@ -63,33 +63,6 @@
                                         Жизненный цикл проекта, который совмещает компоненты различных типов жизненных циклов
                                     </td>
                                 </tr>
-                                <tr class="d-flex" data-type="principle" data-source="agile" data-category="individualMember">
-                                    <td class="col-1 text-center">6</td>
-                                    <td class="col-3 text-center">
-                                        Предиктивный (Fully plan-driven)
-                                    </td>
-                                    <td class="col-8 text-center">
-                                        Содержание проекта, а также сроки и стоимость, необходимые для выполнения данного содержания, определяются на как можно более ранней стадии жизненного цикла
-                                    </td>
-                                </tr>
-                                <tr class="d-flex" data-type="principle" data-source="agile" data-category="individualMember">
-                                    <td class="col-1 text-center">7</td>
-                                    <td class="col-3 text-center">
-                                        Итеративный и Инкрементный
-                                    </td>
-                                    <td class="col-8 text-center">
-                                        Объем работ проекта обычно определяется на ранней стадии жизненного цикла проекта, но оценки сроков и стоимости регулярно уточняются по мере того, как команда проекта начинает лучше понимать продукт
-                                    </td>
-                                </tr>
-                                <tr class="d-flex" data-type="principle" data-source="agile" data-category="individualMember">
-                                    <td class="col-1 text-center">8</td>
-                                    <td class="col-3 text-center">
-                                        Адаптивный (Agile)
-                                    </td>
-                                    <td class="col-8 text-center">
-                                        Адаптивные жизненные циклы являются также итеративными и инкрементными, но отличаются тем, что итерации происходят очень быстро (продолжительность обычно составляет 2–4 недели) и фиксированы по времени и ресурсам
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>

@@ -81,7 +81,7 @@ app.controller('myCtrl', function($scope, $http) {
         $http(req).then(function(response) {
                 if(response.data.sources){
                     $scope.methods = response.data.sources;
-                    $scope.methods.push({id : 0, title : "Не выбранно"});
+                    $scope.methods.push({id : 0, title : "Не выбранно", processes:[]});
                     if(methodology_id == undefined){
                         methodology_id = $scope.methods.length;
                     }
@@ -90,29 +90,15 @@ app.controller('myCtrl', function($scope, $http) {
 
                     // console.log($scope.methods.filter(methodology => methodology.methodology_id == methodology_id));
                     $scope.method_selected = (selected.length)? selected[0] : $scope.methods[$scope.methods.length - 1];
+                    $scope.processMethod = $scope.methods[0];
 
                     if(selected.length){
-                        var req = {
-                            method: 'POST',
-                            url: '../../synthesis/get-process',
-                            data: {
-                                methodology_id: selected[0].id,
-                            }
-                        }
-                        console.log(selected);
-                        $http(req).then(
-                            function(response) {
 
-                                if(response.data.process){
-                                    $scope.processes = angular.copy(response.data.process);
-                                }
+                        angular.forEach($scope.method_selected.processes, function (p) {
+                            p.selected = 1;
+                        });
 
-                                // console.log($scope.processes);
-
-                            },
-                            function(response) { // optional
-                                // failed
-                            });
+                        $scope.processes = angular.copy($scope.method_selected.processes);
                     }
                 }
             },
@@ -162,9 +148,9 @@ app.controller('myCtrl', function($scope, $http) {
         $scope.team.splice(index, 1);
     };
 
-    $scope.addProcess = function() {
-        $scope.processes.push({name:$scope.new_process_name,team:[],id: $scope.processes.length});
-        $scope.new_process_name = "";
+    $scope.addProcess = function(process) {
+        process.selected = 1;
+        $scope.processes.push({name: process.name, team:[], id: $scope.processes.length, source_id: process.source_id});
     };
 
     $scope.addCurrentProcess = function(process) {
@@ -175,8 +161,9 @@ app.controller('myCtrl', function($scope, $http) {
         $scope.processes[$scope.currentProcess].team.push({name:person.name,id:person.id});
     };
 
-    $scope.removeProcess = function(item) {
+    $scope.removeProcess = function(item, process) {
         $scope.processes.splice(item, 1);
+        $scope.methods[process.source_id - 1].processes.filter((pr) => pr.name === process.name)[0].selected = 0;
     };
 
     $scope.removeProcessPerson = function(item,item_person) {
@@ -233,27 +220,18 @@ app.controller('myCtrl', function($scope, $http) {
     };
 
     $scope.updateMethod = function() {
-        var methodology_id = $scope.method_selected.id;
-        if(methodology_id){
-            var req = {
-                method: 'POST',
-                url: '../../synthesis/get-process',
-                data: {
-                    methodology_id: methodology_id,
-                }
-            }
-            $scope.processes = [];
-            $http(req).then(
-                function(response) {
-                    if(response.data.process){
 
-                        $scope.processes = angular.copy(response.data.process);
-                    }
-                },
-                function(response) { // optional
-                    // failed
-                });
-        }
+        angular.forEach($scope.methods, function (method) {
+            angular.forEach(method.processes, function (p) {
+                p.selected = 0;
+            });
+        });
+
+        angular.forEach($scope.method_selected.processes, function (p) {
+            p.selected = 1;
+        });
+
+        $scope.processes = angular.copy($scope.method_selected.processes);
     };
 
 

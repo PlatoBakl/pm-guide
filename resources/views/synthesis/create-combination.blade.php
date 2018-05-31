@@ -64,9 +64,9 @@
                                     <tr ng-repeat="(key, person) in team">
                                         <td scope="row">@{{ key + 1 }}</td>
                                         <td>@{{person.name}}</td>
-                                        <td><input size="5" class="form-control" type="number" ng-model="person.min"></td>
-                                        <td><input size="5" class="form-control" type="number" ng-model="person.current"></td>
-                                        <td><input size="5" class="form-control" type="number" ng-model="person.max"></td>
+                                        <td><input size="5" class="form-control" type="number" min="0" ng-model="person.min"></td>
+                                        <td><input size="5" class="form-control" type="number" min="0" ng-min="person.min" ng-model="person.current"></td>
+                                        <td><input size="5" class="form-control" type="number" min="0" ng-min="person.current" ng-model="person.max"></td>
                                         <td><button type="button" class="btn btn-sm btn-danger" ng-click="removePerson(person)"><b style="font-size: 1.4em">-</b></button></td>
                                     </tr>
                                 </tbody>
@@ -111,7 +111,7 @@
                                         </table>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-danger" ng-click="removeProcess(key)"><b style="font-size: 1.4em">-</b></button>
+                                        <button type="button" class="btn btn-sm btn-danger" ng-click="removeProcess(key, process)"><b style="font-size: 1.4em">-</b></button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -125,7 +125,7 @@
                                 <tr>
                                     <th style="width: 25%" scope="col">Наименование риска</th>
                                     <th style="width: 33.33%" scope="col">Вероятность наступления</th>
-                                    <th style="width: 33.33%" scope="col">Последствия проявления</th>
+                                    <th style="width: 33.33%" scope="col">Последствия проявления <i class="fas fa-info-circle" data-toggle="modal" data-target="#risksConsequencesModal" style="font-size: 15px;color: #899db3; cursor: pointer"></i></th>
                                     <th style="width: 8.33%" scope="col"></th>
                                 </tr>
                                 </thead>
@@ -144,9 +144,9 @@
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <td><input size="5" class="form-control" type="number" ng-model="risk_type.value[0].min"></td>
-                                                <td><input size="5" class="form-control" type="number" ng-model="risk_type.value[0].current"></td>
-                                                <td><input size="5" class="form-control" type="number" ng-model="risk_type.value[0].max"></td>
+                                                <td><input size="5" class="form-control" type="number" min="0"  step="0.01" ng-model="risk_type.value[0].min"></td>
+                                                <td><input size="5" class="form-control" type="number" min="0"  step="0.01" ng-model="risk_type.value[0].current"></td>
+                                                <td><input size="5" class="form-control" type="number" min="0"  step="0.01" ng-model="risk_type.value[0].max"></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -195,12 +195,27 @@
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <input ng-model="new_process_name" type="text" class="form-control">
+                                <!--<input ng-model="new_process_name" type="text" class="form-control">-->
+                                <select
+                                        ng-options="method as method.title for method in methods"
+                                        ng-model="processMethod"
+                                        class="form-control"
+                                        name="method"
+                                >
+                                </select>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button"  class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                            <button type="button" ng-click="addProcess()" class="btn btn-primary" data-dismiss="modal">Добавить</button>
+                            <div>
+                                <table>
+                                    <tbody>
+                                    <tr ng-repeat="process in processMethod.processes" >
+                                        <td class="col-11" ng-if="!process.selected">@{{ process.name }}</td>
+                                        <td class="col-1" ng-if="!process.selected">
+                                            <button type="button" class="btn btn-sm btn-success" ng-click="addProcess(process)"><b style="font-size: 1.4em">+</b></button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -255,6 +270,62 @@
                         <div class="modal-footer">
                             <button type="button"  class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                             <button type="button" ng-click="addRisk()" class="btn btn-primary" data-dismiss="modal">Добавить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="risksConsequencesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document" style="max-width: 715px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Шкала оценивания последствий рисков</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th class="col-10">Негативные последствия</th>
+                                    <th class="col-2">Баллы</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="col-10">Катастрофические последствия, приведшие к гибели людей</td>
+                                    <td class="col-2">10</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-10">Катастрофические последствия, приведшие к особо крупным материальным потерям и/или к травмам людей</td>
+                                    <td class="col-2">9</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-10">Серьезный материальный ущерб для компании</td>
+                                    <td class="col-2">7-8</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-10">Ощутимые материальные потери для компании</td>
+                                    <td class="col-2">5-6</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-10">Материальные потери, которые не приводят к финансовым затруднениям в компании</td>
+                                    <td class="col-2">3-4</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-10">Незначительные материальные потери</td>
+                                    <td class="col-2">2</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-10">Практически отсутствуют материальные потери</td>
+                                    <td class="col-2">1</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-10">Негативные последствия отсутствуют</td>
+                                    <td class="col-2">0</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

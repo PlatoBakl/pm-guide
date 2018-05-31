@@ -62,6 +62,28 @@
                                                         </td>
                                                     </tr>
                                                 @endforeach
+                                                <tr>
+                                                    <td>Сумма</td>
+                                                    <td>
+                                                        <table class="table">
+                                                            <thead>
+                                                            <tr>
+                                                                <th scope="col">Минимальная</th>
+                                                                <th scope="col">Ожидаемая</th>
+                                                                <th scope="col">Максимальная</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr>
+                                                                <td>{{$combination['total_process_min']}}</td>
+                                                                <td>{{$combination['total_process_current']}}</td>
+                                                                <td>{{$combination['total_process_max']}}</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+
+                                                </tr>
                                             </tbody>
                                         </table>
                                     @endif
@@ -85,6 +107,12 @@
                                                     <td>{{$team['max']}}</td>
                                                 </tr>
                                             @endforeach
+                                            <tr>
+                                                <td>Сумма</td>
+                                                <td>{{$combination['total_team_min']}}</td>
+                                                <td>{{$combination['total_team_current']}}</td>
+                                                <td>{{$combination['total_team_max']}}</td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     @endif
@@ -140,6 +168,28 @@
                                                     </td>
                                                 </tr>
                                             @endforeach
+                                            <tr>
+                                                <td></td>
+                                                <td style="text-align: right">Сумма рисков</td>
+                                                <td>
+                                                    <table>
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col">Минимальная</th>
+                                                            <th scope="col">Ожидаемая</th>
+                                                            <th scope="col">Максимальная</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td>{{$combination['total_risk_min']}}</td>
+                                                            <td>{{$combination['total_risk_current']}}</td>
+                                                            <td>{{$combination['total_risk_max']}}</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     @endif
